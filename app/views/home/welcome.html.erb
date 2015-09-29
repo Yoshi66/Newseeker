@@ -1,0 +1,5 @@
+<h1>AAAAAAAAAAAAAAAAAA</h1>
+<% @articles.map do |article|%>
+  <td><%= link_to image_tag(article.photo.url(:medium)), article.url,target:["_blank"] %></td>
+<% end %>
+<%= link_to "share article", new_article_path %>
