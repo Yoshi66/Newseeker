@@ -15,6 +15,7 @@ gem 'paperclip'
 gem 'metainspector'
 gem 'bootstrap-sass','3.3.3'
 gem 'sprockets', '3.3.5'
+gem 'bcrypt-ruby', '3.1.2'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
