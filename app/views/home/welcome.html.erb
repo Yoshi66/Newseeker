@@ -11,34 +11,33 @@
     <![endif]-->
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <%= link_to "sample app", '#', id: "logo" %>
-          <nav>
-            <ul class="nav pull-right">
-              <li><%= link_to "Home",    '#' %></li>
-              <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-      <%= yield %>
-      <br>
-      <br>
+        <!-- 2.ヘッダ情報 -->
+        <div class="navbar-header">
+            <a class="navbar-brand">Title</a>
+        </div>
+        <!-- 3.リストの配置 -->
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Articles</a></li>
+            <li><%= link_to "New", new_article_path %></li>
+        </ul>
+        <!-- 4.ボタン -->
+        <button type="button" class="btn btn-default navbar-btn">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </button>
+    </div>
+</nav>
       <br>
       <br>
       <br>
     </div>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span2" style="background-color:black;">
+        <div class="col-md-2" style="background-color:black;">
           <%= render "shared/sidebar"%>
         </div>
-        <div class="span10">
+        <div class="col-md-10">
           <%= render "shared/main_content"%>
         </div>
       </div>

@@ -1,3 +1,36 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.plan-box {
+  position: relative;
+  width: 100%;
+  height: 288px;
+  float: left;
+  margin: 15px 0px 5px 0px;
+  border: 1px solid #ccc;
+  border-bottom: 5px solid #f4bd6b;
+  background: #fbfbfb;
+}
+
+.plan-photo{
+  position: relative;
+  width: 95%;
+  height: 57%;
+  margin: 3% auto 3% auto;
+}
+
+.plan-intro{
+  position: relative;
+  width:95%;
+  height: 37%;
+  margin: 0px auto 0px auto;
+  word-break:break-all;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.plan-limit{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }

@@ -1,1 +1,3 @@
-<div><%= link_to image_tag(object.photo.url(:large),width:1000), object.url, target:["_blank"]%></div>
+<% if object.present? %>
+  <div><%= link_to image_tag(object.photo.url(:large),class:"img-responsive",style:"height:100%"), object.url, target:["_blank"]%></div>
+<% end %>
