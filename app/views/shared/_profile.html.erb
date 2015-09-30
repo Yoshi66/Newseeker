@@ -1,8 +1,7 @@
-<h1>profile</h1>
 <div class="profile-frame">
   <div class="introduction">
     <% if user_signed_in? %>
-      <%link_to image_tag(user.picture.url(:square),edit_user_registration_path)%>
+      <div><%=link_to image_tag(current_user.profile_photo.url(:square)),edit_user_registration_path%></div>
     <% else %>
       <h1>no Image</h1>
     <% end %>
