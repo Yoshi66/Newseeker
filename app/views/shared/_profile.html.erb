@@ -1,0 +1,13 @@
+<h1>profile</h1>
+<div class="profile-frame">
+  <div class="introduction">
+    <% if user_signed_in? %>
+      <%link_to image_tag(user.picture.url(:square),edit_user_registration_path)%>
+    <% else %>
+      <h1>no Image</h1>
+    <% end %>
+  </div>
+  <div class="following">
+
+  </div>
+</div>
