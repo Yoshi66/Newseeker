@@ -1,9 +1,9 @@
-<div class="row-fluid">
-  <div class="col-md-7" style="background-color:blue;">
+<div class="row">
+  <div class="col-md-7" style="padding:0!important;">
     <%= render "shared/main_article", object: @top_article%>
   </div>
-  <div class="col-md-5" style="background-color:pink;">
-      <div><%= render "shared/sub_article", object: @second_article%></div>
+  <div class="col-md-5" style="padding:0!important;">
+      <div style="border-bottom: 2px solid #FFFFFF;"><%= render "shared/sub_article", object: @second_article%></div>
       <div><%= render "shared/sub_article", object: @third_article%></div>
   </div>
 </div>
