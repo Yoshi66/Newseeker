@@ -21,6 +21,13 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Articles</a></li>
             <li><%= link_to "New", new_article_path %></li>
+            <% if user_signed_in? %>
+            <li><%= link_to 'Profile', edit_user_registration_path %></li>
+            <li><%= link_to "LogOut", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+            <li><%= link_to "SignUp", new_user_registration_path %></li>
+            <li><%= link_to "LogIn", new_user_session_path %></li>
+            <% end %>
         </ul>
         <!-- 4.ボタン -->
         <button type="button" class="btn btn-default navbar-btn">
