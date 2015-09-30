@@ -1,5 +1,47 @@
-<h1>AAAAAAAAAAAAAAAAAA</h1>
-<% @articles.map do |article|%>
-  <td><%= link_to image_tag(article.photo.url(:medium)), article.url,target:["_blank"] %></td>
-<% end %>
-<%= link_to "share article", new_article_path %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "sample app", '#', id: "logo" %>
+          <nav>
+            <ul class="nav pull-right">
+              <li><%= link_to "Home",    '#' %></li>
+              <li><%= link_to "Help",    '#' %></li>
+              <li><%= link_to "Sign in", '#' %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2" style="background-color:black;">
+          <%= render "shared/sidebar"%>
+        </div>
+        <div class="span10">
+          <%= render "shared/main_content"%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

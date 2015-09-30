@@ -13,6 +13,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'paperclip'
 gem 'metainspector'
+gem 'bootstrap-sass', '2.3.2.0'
+gem 'sprockets', '3.3.5'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

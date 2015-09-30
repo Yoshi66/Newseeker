@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="span7" style="background-color:blue;">
+    <%= render "shared/main_article", object: @top_article%>
+  </div>
+  <div class="span5" style="background-color:pink;">
+    <div style="width:100%;height:50%;"><%= render "shared/sub_article", object: @second_article%></div><br>
+    <div style="width:100%;height:50%;"><%= render "shared/sub_article", object: @third_article%></div>
+  </div>
+</div>

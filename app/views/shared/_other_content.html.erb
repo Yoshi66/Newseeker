@@ -1,0 +1,9 @@
+<% @one_articles.map do |object|%>
+  <div class="row">
+      <div class="span4" style="background-color:green;">
+        <li>
+          <div style="height:375px;width:304px;"><%= link_to image_tag(object.photo.url(:medium)), object.url, target:["_blank"]%></div>
+        </li>
+      </div>
+    </div>
+<% end %>
