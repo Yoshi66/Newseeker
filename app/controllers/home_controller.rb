@@ -6,4 +6,7 @@ class HomeController < ApplicationController
     @third_article = Article.all.find_by(id: 3)
     @one_articles = Article.all
   end
+
+  def mypick
+  end
 end

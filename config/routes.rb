@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
   root 'home#welcome'
   resources :articles
+  get 'mypick',to: 'home#mypick'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
