@@ -19,7 +19,6 @@
   <% if @article.photo.present? %>
    <strong>Picture:</strong>
    <!--- Modelのstyleで指定した :midium など渡すことでサイズを指定できる -->
-
    <%= image_tag @article.photo.url(:medium) %>
   <% end %>
 </p>

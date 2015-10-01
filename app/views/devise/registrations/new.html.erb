@@ -9,6 +9,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :profile_photo %><br />
     <%= f.file_field :profile_photo, autofocus: true %>
   </div>
@@ -30,5 +35,8 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+    <%= link_to "facebook", user_omniauth_authorize_path(:facebook) %>
+    <%= link_to "twitter", user_omniauth_authorize_path(:twitter) %>
+
 
 <%= render "devise/shared/links" %>

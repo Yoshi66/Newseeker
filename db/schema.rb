@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930230625) do
+ActiveRecord::Schema.define(version: 20150930234928) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(version: 20150930230625) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "name",                       default: "", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

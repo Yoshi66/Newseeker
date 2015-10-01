@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,:omniauthable
   has_attached_file :profile_photo,:styles => {
                         :thumb  => "90x60",
                         :medium => "408x189",
@@ -15,4 +15,39 @@ class User < ActiveRecord::Base
   validates_attachment :profile_photo,
        presence: true,  # ファイルの存在チェック
        less_than: 5.megabytes # ファイルサイズのチェック
+  before_validation :insert_profile_photo
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+    unless user
+      user = User.create(
+        uid: auth.uid,
+        provider: auth.provider,
+        name: auth.info.name,
+        email: User.get_email(auth),
+        profile_photo:auth.info.image,
+        password: Devise.friendly_token[4, 30])
+    end
+    user
+  end
+
+  private
+    def self.get_email(auth)
+      email = auth.info.email
+      email = "#{auth.provider}-#{auth.uid}@example.com" if email.blank?
+      email
+    end
+
+    def insert_profile_photo
+      # p self
+      # logger.debug "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      # self.profile_photo = "app/assets/images/DSCF3434.jpg"
+      # puts self.profile_photo
+      # if self.profile_photo = "/profile_photos/original/missing.png"
+      #   logger.debug "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      #   return self.profile_photo = "DSCF3434.jpg"
+      # else
+      #   logger.debug "ccccccccccccccccccccccccccccccccccccc"
+      #   return self.profile_photo
+      # end
+    end
 end

@@ -17,6 +17,9 @@ gem 'bootstrap-sass','3.3.3'
 gem 'sprockets', '3.3.5'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'devise', '~> 3.4.0'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

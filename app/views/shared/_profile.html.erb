@@ -1,12 +1,21 @@
-<div class="profile-frame">
-  <div class="introduction">
+<div class="profile-frame" style="border-bottom:1px solid #ccc;">
+  <div class="introduction" style="border-bottom:1px solid #ccc;">
     <% if user_signed_in? %>
-      <div><%=link_to image_tag(current_user.profile_photo.url(:square)),edit_user_registration_path%></div>
+      <div><%=link_to image_tag(current_user.profile_photo.url(:square),style:"display:block;margin:5px auto 5px auto;"),edit_user_registration_path%>
+      </div>
+      <h5 style="text-align:center;"><%= current_user.name%></h5>
     <% else %>
       <h1>no Image</h1>
     <% end %>
   </div>
-  <div class="following">
-
+  <div class="relation">
+    <div class="following col-md-6">
+        <div class="center-block" style="width:50%;">111</div>
+        <div style="width:50%;">following</div>
+    </div>
+    <div class="followed col-md-6" style="float:right;border-left:1px solid #ccc;">
+        <div class="center-block" style="width:50%;">222</div>
+        <div style="width:50%;text-align:center;">followed</div>
+    </div>
   </div>
 </div>
