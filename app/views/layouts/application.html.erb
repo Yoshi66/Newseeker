@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Newseeker</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>Newseekeraaaaaaaaaaaa</title>
+  <%= stylesheet_link_tag "application", media: "all",
+                                           "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
-
-<%= yield %>
-
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- 2.ヘッダ情報 -->
+        <div class="navbar-header">
+            <a class="navbar-brand">Title</a>
+        </div>
+        <!-- 3.リストの配置 -->
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Articles</a></li>
+            <li><%= link_to "New", new_article_path %></li>
+            <% if user_signed_in? %>
+            <li><%= link_to 'Profile', edit_user_registration_path %></li>
+            <li><%= link_to "LogOut", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+            <li><%= link_to "SignUp", new_user_registration_path %></li>
+            <li><%= link_to "LogIn", new_user_session_path %></li>
+            <% end %>
+        </ul>
+        <!-- 4.ボタン -->
+        <button type="button" class="btn btn-default navbar-btn">
+            <span class="glyphicon glyphicon-envelope"></span>
+        </button>
+    </div>
+  </nav>
+  <div class="row-fluid" style="padding-top:50px;">
+    <div class="col-md-2" style="background-color:#EFEFEF;">
+      <%= render "shared/sidebar"%>
+    </div>
+    <div class="col-md-10" style="background-color:#EFEFEF;">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

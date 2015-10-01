@@ -1,27 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @article.content %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @article.url %>
-</p>
-
-<p>
-  <% if @article.photo.present? %>
-   <strong>Picture:</strong>
-   <!--- Modelのstyleで指定した :midium など渡すことでサイズを指定できる -->
-   <%= image_tag @article.photo.url(:medium) %>
-  <% end %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<div class="container">
+  <div class="row-fluid">
+    <div class="col-md-8"style="background-color:blue;">
+      <%= render "shared/one_content", object:@article %>
+    </div>
+    <div class="col-md-4"style="background-color:red;">
+      <div class="row-fluid">
+      <% if @articles.present? %>
+        <% @articles.map do |object| %>
+          <%= render "shared/one_content", object:object %>
+        <% end %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

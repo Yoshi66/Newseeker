@@ -1,6 +1,4 @@
-<% if object.present? %>
-  <% object.map do |object| %>
-    <div class="col-md-4 center">
+<div class="center-block">
       <div class="plan-box">
         <div class="plan-photo">
           <%=link_to image_tag(object.photo.url(:medium),class:"img-responsive",style:"width:100%;height:100%"), object %>
@@ -11,6 +9,4 @@
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-<% end %>
+</div>
