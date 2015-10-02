@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :articles
+  has_many :articles, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:omniauthable
   has_attached_file :profile_photo,:styles => {
@@ -16,7 +23,6 @@ class User < ActiveRecord::Base
   validates_attachment :profile_photo,
        presence: true,  # ファイルの存在チェック
        less_than: 5.megabytes # ファイルサイズのチェック
-  before_validation :insert_profile_photo
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
     unless user
@@ -31,24 +37,23 @@ class User < ActiveRecord::Base
     user
   end
 
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+
   private
     def self.get_email(auth)
       email = auth.info.email
       email = "#{auth.provider}-#{auth.uid}@example.com" if email.blank?
       email
-    end
-
-    def insert_profile_photo
-      # p self
-      # logger.debug "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-      # self.profile_photo = "app/assets/images/DSCF3434.jpg"
-      # puts self.profile_photo
-      # if self.profile_photo = "/profile_photos/original/missing.png"
-      #   logger.debug "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
-      #   return self.profile_photo = "DSCF3434.jpg"
-      # else
-      #   logger.debug "ccccccccccccccccccccccccccccccccccccc"
-      #   return self.profile_photo
-      # end
     end
 end

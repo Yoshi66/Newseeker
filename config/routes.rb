@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  root 'home#welcome'
   devise_for :users, :controllers => {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    omniauth_callbacks: 'users/omniauth_callbacks',
   }
-  root 'home#welcome'
+  get '/users/:id/following',to:'users#following'
+  get '/users/:id/followers',to:'users#followers'
+  get '/users/:id',to:'users#show',as:'user'
   resources :articles
+  resources :relationships,only: [:create, :destroy]
   get 'mypick',to: 'home#mypick'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

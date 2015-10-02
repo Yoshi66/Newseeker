@@ -8,5 +8,6 @@ class HomeController < ApplicationController
   end
 
   def mypick
+    @user = User.find(params(:id))
   end
 end
