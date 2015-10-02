@@ -44,7 +44,19 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
-  gem 'debugger'
+  gem 'pry-rails'
+
+  # デバッガー
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+
+  # pryの入出力に色付け
+  gem 'pry-coolline'
+  gem 'awesome_print'
+
+  # PryでのSQLの結果を綺麗に表示
+  gem 'hirb'
+  gem 'hirb-unicode'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
