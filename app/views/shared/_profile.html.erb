@@ -13,7 +13,7 @@
   </div>
   <div class="relation" style="height:43px;">
     <div class="following col-md-6">
-        <div class="center-block" style="width:50%;">111
+        <div class="center-block" style="width:50%;">
           <% if user_signed_in? %>
             <%= current_user.followed_users.count %>
           <% end %>
@@ -21,10 +21,11 @@
         <div style="width:50%;">following</div>
     </div>
     <div class="followed col-md-6" style="float:right;border-left:1px solid #ccc;">
-        <div class="center-block" style="width:50%;">222</div>
+        <div class="center-block" style="width:50%;">
           <% if user_signed_in? %>
             <%= current_user.followers.count %>
           <% end %>
+          </div>
         <div style="width:50%;text-align:center;">followed</div>
     </div>
   </div>
