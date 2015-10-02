@@ -17,14 +17,22 @@ class Article < ActiveRecord::Base
   validates :url, presence: true
   before_validation :get_image_from_link
 
-  private
+  def feed
+    Articles.from_users_followed_by(self)
+  end
+
+  def self.from_users_followed_by(user)
+    followed_user_ids = "SELECT followed_id FROM relationships
+                         WHERE follower_id = :user_id"
+    where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
+          user_id: user.id)
+  end
+
     def get_image_from_link
       page = MetaInspector.new(url)
       return unless page.images.best.present?
-      puts "AAAAAAAAAAAAAAA"
       self.title = page.best_title
       self.content = page.description
       self.photo = page.images.best
-      puts "AAAAAAAAAAAAAAAAA"
     end
 end
