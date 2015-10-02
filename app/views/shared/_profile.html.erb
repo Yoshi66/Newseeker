@@ -1,7 +1,7 @@
 <div class="profile-frame" style="border-bottom:1px solid #ccc;">
   <div class="introduction" style="border-bottom:1px solid #ccc;">
     <% if user_signed_in? %>
-      <%= link_to mypick_path do %>
+      <%= link_to user_path(current_user) do %>
         <div>
           <%= image_tag(current_user.profile_photo.url(:square),style:"display:block;margin:5px auto 5px auto;")%>
           <h5 style="text-align:center;"><%= current_user.name%></h5>
