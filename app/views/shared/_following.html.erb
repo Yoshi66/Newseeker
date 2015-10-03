@@ -1,0 +1,31 @@
+<div class="col-md-4">
+  <div style="height:125px;background-color:white;padding:16px;margin: 15px 0px 5px 0px;">
+    <div class="row" style="height:65px;">
+      <div class="col-md-4"><%= image_tag(object.profile_photo.url(:square),style:"height:65px;")%></div>
+      <div class="col-md-8">
+          <div style="height:35px;"><%= object.name%></div>
+          <div style="height:30px;"><%= object.email%></div>
+      </div>
+    </div>
+
+    <div class="row" style="height:60px;">
+     <div class="col-md-4 following" style="text-align:center;">
+          <div style="height:50%;">following</div>
+          <div style="height:50%;padding-top:10px;"><%= object.followed_users.count %></div>
+      </div>
+      <div class="col-md-4 followed" style="border-left:1px solid #ccc;text-align:center;">
+          <div style="height:50%;">followed</div>
+          <div style="height:50%;padding-top:10px;"><%= object.followers.count %></div>
+      </div>
+      <div class="col-md-4 followed" style="text-align:center;">
+          <div id="follow_form_<%= object.id %>" style="height:50%;padding-top:10px;">
+            <% if current_user.following?(object) %>
+              <%= render 'users/unfollow', object: object%>
+            <% else %>
+              <%= render 'users/follow', object:object %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

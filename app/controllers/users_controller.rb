@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
+    @key = params[:key]
+    p params
     p @user
     p "BBBBBBBBBBBBBBBBBBBBBBBBBB"
   end

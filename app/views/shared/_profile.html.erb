@@ -1,32 +1,47 @@
 <div class="profile-frame" style="border-bottom:1px solid #ccc;">
-  <div class="introduction" style="border-bottom:1px solid #ccc;">
+  <div class="introduction" style="border-bottom:1px solid #ccc;text-align:center;">
     <% if user_signed_in? %>
-      <%= link_to user_path(current_user) do %>
+      <%= link_to user_path(current_user,key:"current_user") do %>
         <div>
           <%= image_tag(current_user.profile_photo.url(:square),style:"display:block;margin:5px auto 5px auto;")%>
           <h5 style="text-align:center;"><%= current_user.name%></h5>
         </div>
       <% end %>
     <% else %>
-      <h1>no Image</h1>
+      <i class="fa fa-user fa-4x" style="padding-top:10px;"><p><%= link_to "Sign Up", new_user_registration_path %></p></i>
     <% end %>
   </div>
   <div class="relation" style="height:43px;">
-    <div class="following col-md-6">
+    <% if user_signed_in? %>
+      <%= link_to user_path(current_user, key:"followed_users") do %>
+        <div class="following col-md-6">
+            <div class="center-block" style="width:50%;">
+                <div style="text-align:center;font-weight:700;"><%= current_user.followed_users.count %></div>
+            </div>
+            <div style="width:50%;">following</div>
+        </div>
+      <% end %>
+      <%= link_to user_path(current_user, key:"followers") do %>
+        <div class="followed col-md-6" style="float:right;border-left:1px solid #ccc;">
+            <div class="center-block" style="width:50%;">
+                <div id="followers" style="text-align:center;font-weight:700;"><%= current_user.followers.count %></div>
+              </div>
+            <div style="width:50%;text-align:center;">followed</div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="following col-md-6">
         <div class="center-block" style="width:50%;">
-          <% if user_signed_in? %>
-            <%= current_user.followed_users.count %>
-          <% end %>
+          <div style="text-align:center">-</div>
         </div>
         <div style="width:50%;">following</div>
-    </div>
-    <div class="followed col-md-6" style="float:right;border-left:1px solid #ccc;">
+      </div>
+      <div class="following col-md-6">
         <div class="center-block" style="width:50%;">
-          <% if user_signed_in? %>
-            <%= current_user.followers.count %>
-          <% end %>
-          </div>
-        <div style="width:50%;text-align:center;">followed</div>
-    </div>
+          <div style="text-align:center">-</div>
+        </div>
+        <div style="width:50%;">followed</div>
+      </div>
+    <% end %>
   </div>
 </div>

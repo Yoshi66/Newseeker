@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
   :url  => "/assets/arts/:id/:style/:basename.:extension", # 画像保存先のURL先
   :path => "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" # サーバ上の画像保存先パス
   validates_attachment :profile_photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
-  # ## Validation
   validates_attachment :profile_photo,
        presence: true,  # ファイルの存在チェック
        less_than: 5.megabytes # ファイルサイズのチェック
+
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
     unless user
@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
         password: Devise.friendly_token[4, 30])
     end
     user
+  end
+
+  def feed
+    Article.from_users_followed_by(self)
   end
 
   def following?(other_user)

@@ -1,4 +1,4 @@
-<div class="row" style="border-bottom:1px solid #ccc;">
+<div class="row" style="border-bottom:1px solid #ccc;background-color:#FFFFFF;">
   <div class="col-md-2">
   </div>
   <div class="col-md-8 block-center" style="height:140px;">
@@ -8,15 +8,14 @@
       </div>
       <div class="col-md-10">
         <div>
-          <h5>Title</h5>
-          <h5>Name</h5>
-          <h5>description</h5>
+          <h5><%= @user.name %></h5>
+          <h5><%= @user.email %></h5>
           <% unless current_user?(@user) %>
-            <div id="follow_form" style="float:right;">
+            <div id="follow_form_<%= @user.id %>" style="float:right;">
             <% if current_user.following?(@user) %>
-              <%= render 'users/unfollow', object:@user %>
+              <%= render 'users/unfollow',object: @user %>
             <% else %>
-              <%= render 'users/follow',object:@user %>
+              <%= render 'users/follow',object: @user %>
             <% end %>
             </div>
           <% end %>
@@ -27,29 +26,39 @@
   <div class="col-md-2">
   </div>
 </div>
-<div class="row">
-  <div class="pick_title">
+<!-- pick follow followed -->
+<div class="row" style="background-color:#FFFFFF;">
     <div class="col-md-2">
     </div>
     <div class="col-md-8" style="height:55px;">
       <div class="col-md-1" style="text-align:center;border-bottom: 5px solid #f4bd6b;"><h5>PICK</h5></div>
-      <div class="col-md-1" style="text-align:center;"><h5>21</h5><h5>following</h5></div>
-      <div class="col-md-1" style="text-align:center;"><h5>1</h5><h5>followed</h5></div>
+      <div class="col-md-1">
+        <h5 style="text-align:center;"><%= current_user.followers.count %></h5>
+        <div>following</div>
+      </div>
+      <div class="col-md-1" style="text-align:center;">
+        <h5 style="text-align:center;"><%= current_user.followers.count %></h5>
+        <div>followed</div>
+      </div>
     </div>
-    <div class="col-md-2">
-    </div>
-  </div>
 </div>
+<!-- articles. users -->
 <div class="row">
-  <div class="pick">
     <div class="col-md-2">
     </div>
-    <div class="col-md-8" style="height:55px;">
-      <% @user.articles.map do |object|%>
-        <%= render 'shared/one_content', object:object%>
+    <div class="col-md-8">
+      <% if @key == "followed_users"%>
+        <% @user.followed_users.map do |object|%>
+          <%= render 'shared/following', object: object %>
+        <% end %>
+      <% elsif @key == "followers" %>
+        <% @user.followers.map do |object|%>
+          <%= render 'shared/following', object: object %>
+        <% end %>
+      <% else%>
+        <% @user.articles.map do |object|%>
+          <%= render 'shared/one_content', object:object%>
+        <% end %>
       <% end %>
     </div>
-    <div class="col-md-2">
-    </div>
-  </div>
 </div>

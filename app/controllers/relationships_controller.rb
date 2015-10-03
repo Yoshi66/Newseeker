@@ -4,12 +4,22 @@ class RelationshipsController < ApplicationController
     p @user
     logger.debug "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     current_user.follow!(@user)
-    redirect_to user_path(@user)
+    respond_to do |format|
+      logger.debug "AAgnreiug;aeglme;gio"
+      format.html { redirect_to @user }
+      # format.html { redirect_to @user, object: @user }
+      # format.js {render 'create', object: @user }
+      format.js {render 'create' }
+    end
   end
 
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow!(@user)
-    redirect_to @user
+    respond_to do |format|
+      logger.debug "AAgnreiug;aeglme;gio"
+      format.html { redirect_to @user }
+      format.js { render 'destroy'}
+    end
   end
 end

@@ -4,9 +4,9 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_attached_file :photo,:styles => {
                         :thumb  => "90x60",
-                        :medium => "408x189",
+                        :medium => "408x189#",
                         :square => "100x100",
-                        :large => "815x378",},
+                        :large => "815x378#",},
   :url  => "/assets/arts/:id/:style/:basename.:extension", # 画像保存先のURL先
   :path => "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" # サーバ上の画像保存先パス
   validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
@@ -17,9 +17,7 @@ class Article < ActiveRecord::Base
   validates :url, presence: true
   before_validation :get_image_from_link
 
-  def feed
-    Articles.from_users_followed_by(self)
-  end
+
 
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships
