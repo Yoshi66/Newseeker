@@ -1,0 +1,29 @@
+<div style="height:100%;background-color: rgba(0, 0, 70, 0.9);">
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" style="background-color:white;text-align:center;margin-top:180px;border-radius: 20px;">
+      <div class="modal-header">
+        <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+        <h3 id="modal_label" style="align:center">Please enter URL of your picked news!</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_for(@article) do |f| %>
+          <div class="form-group">
+            <div class="field">
+              <label for="article_url" class="control-label" style="text-align:center">Url</label>
+              <input type="text" name="article[url]" class="form-control" id="article_url"style="text-align:center" placeholder="Paste Your Url">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="actions">
+              <button type="submit" name="commit" class="btn btn-default">Post</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+</div>

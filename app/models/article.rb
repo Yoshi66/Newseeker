@@ -27,6 +27,9 @@ class Article < ActiveRecord::Base
   end
 
     def get_image_from_link
+      puts 'BBBBBBBBBBBBBBBBBBBBBB'
+      puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+      puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
       page = MetaInspector.new(url)
       return unless page.images.best.present?
       self.title = page.best_title

@@ -10,7 +10,7 @@ namespace :db do
       name = "#{n}"
       email = "example-#{n+1}@railstutorial.jp"
       password  = "password"
-      url = "https://newspicks.com/news/118374#{n+1}?ref=index&block=top"
+      url = "https://newspicks.com/news/118375#{n+1}?ref=index&block=top"
       user = User.create(name:name,
                   email:email,
                   password:password,
