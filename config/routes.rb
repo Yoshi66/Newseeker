@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
+
+  devise_scope :user do
+    post '/users/registrations/detail_info',to:'users/registrations#detail_info'
+    get '/users/registrations/second_view',to:'users/registrations#second_view'
+  end
   get '/users/:id/following',to:'users#following'
   get '/users/:id/followers',to:'users#followers'
   get '/users/:id',to:'users#show',as:'user'

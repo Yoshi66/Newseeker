@@ -3,8 +3,35 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
+  def new
+    @user = User.new
+    puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+    puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+    puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+    respond_to do |format|
+      format.html {_new}
+      puts 'DDDDDDDeeeeeeeeeeeeeeDDDDDDD'
+      format.js
+    end
+  end
+
+  def detail_info
+    puts "PPPPPPPPPPPPPPPPPPPPPPPP"
+    puts params
+    puts "PPPPPPPPPPPPPPPPPPPPPPP"
+    redirect_to users_registrations(params)
+    # respond_to do |format|
+    #   format.html {render second_view, passing_data: params}
+    #   puts 'DDDDDDDDDDDDDDDDDDDDDDDDDD'
+    #   format.js
+    # end
+    # redirect_to users_registrations_second_view_path()
+  end
+
+  # def second_view
+  #   puts "second view"
+  #   puts params
+  #   puts "second view"
   # end
 
   # POST /resource

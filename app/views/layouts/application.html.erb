@@ -11,27 +11,31 @@
     <![endif]-->
 </head>
 <body style="background-color:#EFEFEF;">
-
 <!-- モーダル内容 -->
-<div id="show_modal" class ="modal fade" aria-hidden="true" aria-labelledby="modal_label" role="dialog" style="display: none; " tabindex="-1">----------</div>
+<div id="show_modal" class ="modal fade" aria-hidden="true" aria-labelledby="modal_label" role="dialog" style="display: none; " tabindex="-1"></div>
+<div id="show_signup" class ="modal fade" aria-hidden="true" aria-labelledby="modal_label" role="dialog" style="display: none; " tabindex="-1"></div>
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- 2.ヘッダ情報 -->
         <div class="navbar-header">
-            <a class="navbar-brand">Title</a>
+            <%= link_to "Title", root_path,class:"navbar-brand"%>
         </div>
         <!-- 3.リストの配置 -->
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Articles</a></li>
+            <% if user_signed_in? %>
             <li>
               <%= link_to "New", new_article_path,{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#show_modal'} %>
             </li>
-            <% if user_signed_in? %>
             <li><%= link_to 'Profile', edit_user_registration_path %></li>
             <li><%= link_to "LogOut", destroy_user_session_path, method: :delete %></li>
             <% else %>
-            <li><%= link_to "SignUp", new_user_registration_path %></li>
-            <li><%= link_to "LogIn", new_user_session_path %></li>
+            <li>
+              <%= link_to "SignUp/LogIn", new_user_registration_path, remote: true, 'data-toggle' => "modal",
+              'data-target'=> '#show_signup'%>
+            </li>
+            <!-- <li><%= link_to "SignUp", new_user_registration_path %></li>
+            <li><%= link_to "LogIn", new_user_session_path %></li> -->
             <% end %>
         </ul>
         <!-- 4.ボタン -->

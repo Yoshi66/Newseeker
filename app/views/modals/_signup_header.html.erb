@@ -1,0 +1,33 @@
+<h1>New User</h1>
+<h2>Already have an account?<%= link_to "here", root_path%></h2>
+<%= link_to "facebook", user_omniauth_authorize_path(:facebook) %>
+<%= link_to "twitter", user_omniauth_authorize_path(:twitter) %>
+
+<p>------------ or ------------</p>
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <div class="field">
+      <label for="user_name">Name</label>
+      <input autofocus="autofocus" type="name" value="" name="user[name]" id="user_name">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="field">
+      <label for="user_email">Email</label>
+      <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="field">
+      <label for="user_password">Password</label>
+      <input autocomplete="off" type="password" name="user[password]" id="user_password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="actions">
+      <button type="submit" name="commit" class="btn btn-default">Post</button>
+    </div>
+  </div>
+<% end %>

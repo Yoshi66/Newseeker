@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   validates_attachment :profile_photo,
        presence: true,  # ファイルの存在チェック
        less_than: 5.megabytes # ファイルサイズのチェック
+  before_validation :get_profile_photo
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -35,6 +36,14 @@ class User < ActiveRecord::Base
         password: Devise.friendly_token[4, 30])
     end
     user
+  end
+
+  def get_profile_photo
+    puts "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
+    puts self.profile_photo.present?
+    if !self.profile_photo.present?
+      self.profile_photo = File.open("app/assets/images/fa-user.png")
+    end
   end
 
   def feed
