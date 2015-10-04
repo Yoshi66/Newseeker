@@ -4,7 +4,7 @@ class Article < ActiveRecord::Base
   belongs_to :user
   has_attached_file :photo,:styles => {
                         :thumb  => "90x60",
-                        :medium => "408x189#",
+                        :medium => "600x189#",
                         :square => "100x100",
                         :large => "815x378#",},
   :url  => "/assets/arts/:id/:style/:basename.:extension", # 画像保存先のURL先
@@ -27,12 +27,13 @@ class Article < ActiveRecord::Base
   end
 
     def get_image_from_link
-      puts 'BBBBBBBBBBBBBBBBBBBBBB'
-      puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-      puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
       page = MetaInspector.new(url)
       return unless page.images.best.present?
       self.title = page.best_title
+      p page.best_title
+      self.title = page.title
+      p page.title
+      p "AAAAAAAAAAAAAAAAAAAAAAAAAA"
       self.content = page.description
       self.photo = page.images.best
     end

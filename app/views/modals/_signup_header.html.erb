@@ -1,10 +1,19 @@
 <h1>New User</h1>
 <h2>Already have an account?<%= link_to "here", root_path%></h2>
+<%= link_to user_omniauth_authorize_path(:facebook) do%>
+  <div class="btn-lg btn-block btn-social btn-facebook">
+          <i class="fa fa-facebook"></i> Sign in with Facebook
+  </div>
+<% end %>
+<br>
+<%= link_to user_omniauth_authorize_path(:twitter) do%>
+  <div class="btn-lg btn-block btn-social btn-twitter">
+          <i class="fa fa-twitter"></i> Sign in with Twitter
+  </div>
+<% end %>
+
 <%= link_to "facebook", user_omniauth_authorize_path(:facebook) %>
-<%= link_to "twitter", user_omniauth_authorize_path(:twitter) %>
-
 <p>------------ or ------------</p>
-
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="form-group">

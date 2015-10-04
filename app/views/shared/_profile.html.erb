@@ -1,14 +1,23 @@
-<div class="profile-frame" style="border-bottom:1px solid #ccc;">
-  <div class="introduction" style="border-bottom:1px solid #ccc;text-align:center;">
+<div class="profile-frame" style="height:216px;width:185px;border-bottom:1px solid #ccc;padding-top:24px;">
+  <div class="introduction" style="height:118px;border-bottom:1px solid #ccc;text-align:center;">
     <% if user_signed_in? %>
       <%= link_to user_path(current_user,key:"current_user") do %>
-        <div>
-          <%= image_tag(current_user.profile_photo.url(:square),class:"round-picture",style:"display:block;margin:5px auto 5px auto;")%>
-          <h5 style="text-align:center;"><%= current_user.name%></h5>
+        <div class="profile_photo">
+          <%= image_tag(current_user.profile_photo.url(:square),class:"round-picture",style:"display:block;margin:5px auto 5px auto;margin-top:10px;width:48px;height:48px;")%>
+        </div>
+        <div class="name position" style="height:45px;margin-top:10px;">
+          <div style="text-align:center;"><%= current_user.name%></div>
+          <div style="text-align:center;"><%= current_user.name%></div>
         </div>
       <% end %>
     <% else %>
-      <i class="fa fa-user fa-4x" style="padding-top:10px;"><p><%= link_to "Sign Up", new_user_registration_path %></p></i>
+      <i class="fa fa-user fa-2x" style="padding-top:10px;"></i>
+        <div class="name position" style="height:45px;margin-top:10px;">
+          <div style="text-align:center;">No Account</div>
+          <div style="text-align:center;margin-top:10px;">
+            <%= link_to "Sign Up", new_user_registration_path, remote: true, 'data-toggle' => "modal",'data-target'=> '#show_signup'%>
+          </div>
+        </div>
     <% end %>
   </div>
   <div class="relation" style="height:43px;">

@@ -1,16 +1,23 @@
-<div class="container">
-  <div class="row-fluid">
-    <div class="col-md-8"style="background-color:blue;">
-      <%= render "shared/one_content", object:@article %>
-    </div>
-    <div class="col-md-4"style="background-color:red;">
-      <div class="row-fluid">
-      <% if @articles.present? %>
-        <% @articles.map do |object| %>
-          <%= render "shared/one_content", object:object %>
-        <% end %>
+<div class="col-md-2">
+  <%= render "shared/sidebar"%>
+</div>
+<div class="col-md-7">
+  <div style="margin-top:15px;height:262px;">
+      <%= link_to @article.url, :target => "_blank" do %>
+        <%= image_tag(@article.photo.url(:large), style:"height:262px;") %>
       <% end %>
-    </div>
-    </div>
   </div>
+  <div class="col-md-12" style="height:184px;background-color:white;">
+    <%= link_to @article.url, :target => "_blank" do %>
+      <h1><%= @article.title %></h1>
+      <div style="text-align:center;">
+        <%= button_to "Continue Reading", "#", class:"btn btn-primary", :target => "_blank" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="col-md-3">
+  <% @articles.map do |object| %>
+    <%= render "shared/articles", object:object%>
+  <% end %>
 </div>

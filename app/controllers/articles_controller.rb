@@ -11,14 +11,17 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    if signed_in?
+      @article_feed = current_user.feed
+      puts @article_feed
+    else
+      @article_feed = Article.all
+    end
     @articles = Article.all
   end
 
   # GET /articles/new
   def new
-    puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-    puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
-    puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
     @article = Article.new
     respond_to do |format|
       format.html

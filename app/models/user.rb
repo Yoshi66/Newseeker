@@ -39,8 +39,6 @@ class User < ActiveRecord::Base
   end
 
   def get_profile_photo
-    puts "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
-    puts self.profile_photo.present?
     if !self.profile_photo.present?
       self.profile_photo = File.open("app/assets/images/fa-user.png")
     end

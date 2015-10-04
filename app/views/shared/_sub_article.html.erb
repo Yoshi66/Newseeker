@@ -1,3 +1,12 @@
 <% if object.present? %>
-  <div><%= link_to image_tag(object.photo.url(:medium),class:"img-responsive",style:"height:50%;"), object.url,target:["_blank"]%></div>
+  <%= link_to article_path(object) do %>
+    <div class="btn-img" style="position:relative;height:100%;overflow:hideen;background-color:red;">
+      <div class="img-wrap" style="border-right:2px solid #FFFFFF;">
+        <%= image_tag(object.photo.url(:medium),class:"img-responsive")%>
+      </div>
+      <div style="position:absolute;left:5%;top:40%;right:5%;bottom:2%;color:white;">
+        <h3 style="weight:500;"><%= object.title%></h3>
+      </div>
+    </div>
+  <% end %>
 <% end %>

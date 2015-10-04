@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
     puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
     respond_to do |format|
-      format.html {_new}
+      format.html  {render :template => "devise/registrations/_new" }
       puts 'DDDDDDDeeeeeeeeeeeeeeDDDDDDD'
       format.js
     end

@@ -1,9 +1,13 @@
-<div class="row">
-  <div class="col-md-7" style="padding:0!important;">
+<div class="row" style="height:314px;">
+  <div class="col-md-8" style="padding:0!important;">
     <%= render "shared/main_article", object: @top_article%>
   </div>
-  <div class="col-md-5" style="padding:0!important;">
-      <div style="border-bottom: 2px solid #FFFFFF;"><%= render "shared/sub_article", object: @second_article%></div>
-      <div><%= render "shared/sub_article", object: @third_article%></div>
+  <div class="col-md-4" style="padding:0!important;">
+    <div style="border-bottom: 2px solid #FFFFFF;height:50%;background-color:red;">
+      <%= render "shared/sub_article", object: @second_article%>
+    </div>
+    <div style="height:50%;background-color:blue;">
+      <%= render "shared/sub_article", object: @third_article%>
+    </div>
   </div>
 </div>

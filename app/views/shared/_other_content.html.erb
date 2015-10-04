@@ -1,7 +1,9 @@
 <div class="row-fluid">
   <% if @one_articles.present? %>
     <% @one_articles.map do |object| %>
-      <%= render "shared/one_content", object:object %>
+      <div class="col-md-4 center-block">
+        <%= render "shared/one_content", object:object %>
+      </div>
     <% end %>
   <% end %>
 </div>
