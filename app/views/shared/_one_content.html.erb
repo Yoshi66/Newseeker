@@ -1,12 +1,35 @@
 <%= link_to object do %>
-    <div class="plan-box">
-      <div class="plan-photo">
+    <div class="box">
+      <div class="photo">
         <%=link_to image_tag(object.photo.url(:medium),class:"img-responsive",style:"width:100%;height:100%")%>
       </div>
-      <div class="plan-intro">
-        <div class="plan-limit">
-          <p><%=link_to object.title, object %></p>
-        </div>
+      <div class="title">
+        <h4><%=link_to object.title, object %></h4>
+      </div>
+      <div class="comment_person"style="height:15%;padding-left: 5px;padding-right: 5px;">
+        <% if object.comments.present?%>
+          <div style="padding-top:2px;float:left;">
+            <%= image_tag(object.comments.first.user.profile_photo.url(:square),style:"width:35px;") %>
+          </div>
+          <div>
+            <%= object.comments.first.user.name %>
+          </div>
+          <span>
+            <%= object.comments.first.user.name %>
+          </span>
+        <% end %>
+      </div>
+      <div class="comment"style="height:15%;padding-left:5px;padding-right: 5px;">
+         <% if object.comments.present?%>
+            <%= object.comments.first.comment %>
+        <% end %>
+      </div>
+      <div class="list-comment-person"style="height:10%;padding-left:5px;padding-right: 5px;padding-top: 2px;">
+         <% if object.comments.present?%>
+            <% object.comments.limit(10).last(9).map do |comment| %>
+            <%= image_tag(comment.user.profile_photo.url(:square),style:"width:25px;") %>
+            <% end %>
+        <% end %>
       </div>
     </div>
 <% end %>

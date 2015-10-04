@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
       @article_feed = Article.all
     end
     @articles = Article.all
+    @comment = Comment.new
   end
 
   # GET /articles/new

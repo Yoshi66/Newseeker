@@ -15,6 +15,23 @@
       </div>
     <% end %>
   </div>
+  <div class="col-md-12" style="height:184px;background-color:white;margin-top:50px;">
+
+    <div style="padding-top:10px;">
+        <div class="col-md-1" style="float:left;">
+          <%= image_tag(current_user.profile_photo.url(:square), style:"height:40px;")%>
+        </div>
+        <%= form_for(@comment) do |f| %>
+          <%= f.hidden_field :article_id, :value => @article.id %>
+          <div class="col-md-4 field" style="float:left;">
+            <%= f.text_field :comment %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 <div class="col-md-3">
   <% @articles.map do |object| %>

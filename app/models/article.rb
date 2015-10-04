@@ -1,7 +1,8 @@
 require 'open-uri'
 
 class Article < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_attached_file :photo,:styles => {
                         :thumb  => "90x60",
                         :medium => "600x189#",

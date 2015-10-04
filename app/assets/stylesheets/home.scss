@@ -3,26 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.plan-box {
-  position: relative;
-  width: 100%;
+.box {
   height: 288px;
-  float: left;
-  margin: 15px 0px 5px 0px;
+  margin: 15px auto 5px auto;
   border: 1px solid #ccc;
-  border-bottom: 5px solid #f4bd6b;
   background: #fbfbfb;
 }
 
-.plan-photo{
-  position: relative;
-  height: 57%;
+.photo{
+  height: 45%;
 }
 
-.plan-intro{
-  position: relative;
-  width:95%;
-  height: 37%;
+.title{
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 15%;
   margin: 0px auto 0px auto;
   word-break:break-all;
   overflow:hidden;
