@@ -9,7 +9,7 @@ class HomeController < ApplicationController
       @article_feed = current_user.feed
       puts @article_feed
     else
-      @article_feed = Article.all
+      @article_feed = Article.all.order('articles.created_at DESC')
     end
   end
 end

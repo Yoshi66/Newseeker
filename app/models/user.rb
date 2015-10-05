@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Article.from_users_followed_by(self)
+    Article.all.order('articles.created_at DESC').from_users_followed_by(self)
   end
 
   def following?(other_user)
