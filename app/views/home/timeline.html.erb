@@ -1,1 +1,49 @@
-<p>AAAAAAAAAA</p>
+<div class="col-md-2" style="background-color:#FFFFFF;">
+  <%= render "shared/sidebar"%>
+</div>
+<div class="col-md-10" style="background-color:#EFEFEF;">
+  <div class="col-md-1" style="background-color:red;">
+    -
+  </div>
+  <div class="col-md-7"style="margin-top:15px;">
+    <div class="col-md-12" style="background-color:white;height:300px;padding-top:15px;">
+      <div class="article" style="height:50%;background-color:orange;border-bottom:1px solid #ccc;">
+        <div class="col-md-10"style="background-color:red;" >
+          <h2><%= @article.title %></h2>
+          <p>Comment</p>
+        </div>
+        <div class="col-md-2"style="background-color:green;padding-top:25px;" >
+          <%= image_tag(@article.photo.url(:thumb)) %>
+        </div>
+      </div>
+      <div class="comment"style="padding:15px;;height:50%;background-color:yellow;">
+        <div class="intro" style="height:50%;">
+          <div class="created_by" style="float:left;margin-right:10px;">
+            <%= image_tag(@article.user.profile_photo.url(:square),style:"height:70px;") %>
+          </div>
+          <span style="font-size:12px;font-weight:400;padding-top:5px;">
+            <%= @article.user.name %>
+          </span>
+          <div>a<%= @article.user.position %></div>
+        </div>
+        <div class="aaa"style="clear:both;padding-top:5px;">
+          aaaaaaaaaaaaaaaaaaaaa
+        <!--   <%= @article.user.comments.where(article_id: @article.id) %> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"style="background-color:green;margin-top:15px;">
+    <% @article_feed.limit(9).map do |article|%>
+    <div style="height:100px;background-color:white;margin-top:10px;">
+      <div style="float:left;margin-right:10px;">
+        <%= image_tag(article.photo.url(:square),style:"height:100px;")%>
+      </div>
+      <span style="font-size:12px;">
+          <h4 style="padding-top:10px;"><%= article.title %></h4>
+      </span>
+      <div>a<%= article.user.position %></div>
+    </div>
+  <% end %>
+  </div>
+</div>

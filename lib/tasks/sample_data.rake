@@ -10,7 +10,7 @@ namespace :db do
       name = "#{n}"
       email = "example-#{n+1}@railstutorial.jp"
       password  = "password"
-      url = "https://newspicks.com/news/118375#{n+1}?ref=index&block=top"
+      url = "https://newspicks.com/news/118373#{n+1}?ref=index&block=top"
       user = User.create(name:name,
                   email:email,
                   password:password,
@@ -20,6 +20,13 @@ namespace :db do
       article.get_image_from_link
       article.save
       end
+    # 5.times do |n|
+    #   current_user = User.find(id: n+1)
+    #   @article = Article.find(id:n+1)
+    #   @comment = @article.comments.create(comment:"this is #{n+1}")
+    #   @comment.user_id = current_user.id
+    #   @comment.
+    # end
   end
 end
 

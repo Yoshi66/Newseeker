@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def create
-    puts params[:comment][:article_id]
     @article = Article.find(params[:comment][:article_id])
     @comment = @article.comments.create(comment_params)
     @comment.user_id = current_user.id

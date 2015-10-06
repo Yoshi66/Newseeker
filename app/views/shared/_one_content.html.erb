@@ -1,7 +1,7 @@
 <%= link_to object do %>
     <div class="box">
       <div class="photo">
-        <%=link_to image_tag(object.photo.url(:medium),class:"img-responsive",style:"width:100%;height:100%")%>
+        <%=link_to image_tag(object.photo.url(:medium),class:"img-responsive",style:"width:100%;height:100%"), object%>
       </div>
       <div class="title">
         <h4><%=link_to object.title, object %></h4>

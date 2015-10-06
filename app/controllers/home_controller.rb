@@ -7,6 +7,16 @@ class HomeController < ApplicationController
     @one_articles = Article.all
     if signed_in?
       @article_feed = current_user.feed
+      @article_feed = Article.all.order('articles.created_at DESC')
+    else
+      @article_feed = Article.all.order('articles.created_at DESC')
+    end
+  end
+
+  def timeline
+    @article = Article.find_by(id:1)
+    if signed_in?
+      @article_feed = current_user.feed
       puts @article_feed
     else
       @article_feed = Article.all.order('articles.created_at DESC')
