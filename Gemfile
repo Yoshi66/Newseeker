@@ -23,7 +23,7 @@ gem 'omniauth-twitter'
 gem 'faker', '~>  1.5.0'
 gem "font-awesome-rails"
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
