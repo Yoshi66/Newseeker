@@ -16,9 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def detail_info
-    puts "PPPPPPPPPPPPPPPPPPPPPPPP"
-    puts params
-    puts "PPPPPPPPPPPPPPPPPPPPPPP"
     redirect_to users_registrations(params)
     # respond_to do |format|
     #   format.html {render second_view, passing_data: params}
@@ -26,6 +23,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #   format.js
     # end
     # redirect_to users_registrations_second_view_path()
+  end
+
+
+  def update
+    @user = User.find(current_user.id)
+    puts @user.name
+    if @user.update_attributes(params[:user].permit(:name,:email, :company,:position,:introduction, :profile_photo))
+      puts @user.name
+      # Sign in the user bypassing validation in case his password changed
+      redirect_to after_update_path_for(@user)
+    else
+      render "edit"
+    end
+
   end
 
   # def second_view
@@ -41,12 +52,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   # def edit
-  #   super
+  #   puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+  #   puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+  #   puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
+  #   puts 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
   # end
 
   # PUT /resource
   # def update
-  #   super
+  #   puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+  #   puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+  #   puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+  #   puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+  #   puts 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
+  #   redirect_to root_path
   # end
 
   # DELETE /resource
@@ -64,6 +83,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # protected
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_up_params

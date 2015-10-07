@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) << :profile_photo
       devise_parameter_sanitizer.for(:sign_up) << :name
+      devise_parameter_sanitizer.for(:sign_up) << :email
+      devise_parameter_sanitizer.for(:sign_up) << :company
       devise_parameter_sanitizer.for(:sign_up) << :position
+      devise_parameter_sanitizer.for(:sign_up) << :introduction
     end
   protect_from_forgery with: :exception
 end

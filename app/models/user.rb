@@ -27,6 +27,11 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
+            puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        puts auth.extra
     unless user
       user = User.create(
         uid: auth.uid,
@@ -34,7 +39,9 @@ class User < ActiveRecord::Base
         name: auth.info.name,
         email: User.get_email(auth),
         profile_photo:auth.info.image,
+        company:auth.info.bio,
         password: Devise.friendly_token[4, 30])
+
     end
     user
   end

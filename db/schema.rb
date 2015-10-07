@@ -65,7 +65,9 @@ ActiveRecord::Schema.define(version: 20151005023330) do
     t.string   "uid"
     t.string   "provider"
     t.string   "name",                       default: "", null: false
+    t.string   "company"
     t.string   "position"
+    t.text     "introduction"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
