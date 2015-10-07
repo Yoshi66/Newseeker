@@ -2,9 +2,17 @@ class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    @user = User.new
+    puts 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'
+    puts 'LLLLLLLLLLLLLLLLLLLLLLLLL'
+    puts 'CCSSSSSSSSSSSSSSSSSSSS'
+    respond_to do |format|
+      format.html  {render :template => "devise/sessions/_new" }
+      puts 'DDDDDDDeeeeeeeeeeeeeeDDDDDDD'
+      format.js
+    end
+  end
 
   # POST /resource/sign_in
   # def create

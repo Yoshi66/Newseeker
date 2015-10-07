@@ -1,0 +1,35 @@
+<h1>User</h1>
+<p>Don't have an account yet?<%= link_to "here", new_user_registration_path,  remote: true, 'data-toggle' => "modal",
+                'data-target'=> '#sign_up_modal'%></p>
+<%= link_to user_omniauth_authorize_path(:facebook) do%>
+  <div class="btn-lg btn-block btn-social btn-facebook">
+          <i class="fa fa-facebook"></i> Sign in with Facebook
+  </div>
+<% end %>
+<br>
+<%= link_to user_omniauth_authorize_path(:twitter) do%>
+  <div class="btn-lg btn-block btn-social btn-twitter">
+          <i class="fa fa-twitter"></i> Sign in with Twitter
+  </div>
+<% end %>
+<br>
+<p>-------------------- or --------------------</p>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+
+    <div class="field">
+      <input autofocus="autofocus" type="name" value="" name="user[name]" id="user_name" placeholder="Registred email" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="field">
+      <input autofocus="autofocus" type="password" value="" name="user[password]" id="user_password" placeholder="Password" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="actions">
+      <button type="submit" name="commit" class="btn btn-default btn-primary">Sign In</button>
+    </div>
+  </div>
+<% end %>
