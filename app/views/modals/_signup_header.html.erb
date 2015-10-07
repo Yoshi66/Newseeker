@@ -1,5 +1,6 @@
 <h1>New User</h1>
-<p>Already have an account?<%= link_to "here", root_path%></p>
+<p>Already have an account?<%= link_to "here", new_user_session_path,  remote: true, 'data-toggle' => "modal",
+                'data-target'=> '#sign_in_modal'%></p>
 <%= link_to user_omniauth_authorize_path(:facebook) do%>
   <div class="btn-lg btn-block btn-social btn-facebook">
           <i class="fa fa-facebook"></i> Sign in with Facebook
