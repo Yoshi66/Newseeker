@@ -4,10 +4,10 @@ class Article < ActiveRecord::Base
   belongs_to :user, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_attached_file :photo,:styles => {
-                        :thumb  => "90x60",
-                        :medium => "600x189#",
-                        :square => "100x100",
-                        :large => "815x378#",},
+                        :thumb  => "650x320>",
+                        :medium => "400x190#",
+                        :square => "650x320#",
+                        :large => "800x380#",},
   :url  => "/assets/arts/:id/:style/:basename.:extension", # 画像保存先のURL先
   :path => "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" # サーバ上の画像保存先パス
   validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
@@ -28,14 +28,16 @@ class Article < ActiveRecord::Base
   end
 
     def get_image_from_link
-      page = MetaInspector.new(url)
-      return unless page.images.best.present?
-      self.title = page.best_title
-      p page.best_title
-      self.title = page.title
-      p page.title
-      p "AAAAAAAAAAAAAAAAAAAAAAAAAA"
-      self.content = page.description
-      self.photo = page.images.best
+      if url.starts_with?("http")
+        page = MetaInspector.new(url)
+        return unless page.images.best.present?
+        self.title = page.best_title
+        p page.best_title
+        self.title = page.title
+        p page.title
+        p "AAAAAAAAAAAAAAAAAAAAAAAAAA"
+        self.content = page.description
+        self.photo = page.images.best
+      end
     end
 end

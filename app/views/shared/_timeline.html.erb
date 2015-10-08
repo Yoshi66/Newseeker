@@ -1,5 +1,7 @@
-<div style="height:44px;;border-bottom:1px solid #ccc;padding:3px 6px 0 6px;">
-  <h5><%= link_to 'Timeline', timeline_path %>
-  <i class="fa fa-chevron-right" style="float:right;align:right;padding-right:2px;"></i>
-  <h5>
-</div>
+<%= link_to timeline_path do %>
+  <div style="height:44px;;border-bottom:1px solid #ccc;padding:3px 6px 0 6px;">
+    <h5>Timeline
+      <i class="fa fa-chevron-right" style="float:right;align:right;padding-right:2px;"></i>
+    </h5>
+  </div>
+<% end %>

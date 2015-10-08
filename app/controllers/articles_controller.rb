@@ -37,6 +37,9 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
+    p "CCCCCCCCCCCCCCCCC"
+    redirect_to root_path if !params[:article][:url].starts_with?("http")
+    p "BBBBBBBBBBBBBBBBBBBBBBB"
     @article = current_user.articles.build(article_params)
     respond_to do |format|
       if @article.save

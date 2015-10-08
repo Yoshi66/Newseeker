@@ -1,38 +1,75 @@
-<div class="col-md-2">
-  <%= render "shared/sidebar"%>
-</div>
+<%= render "shared/sidebar"%>
 <div class="col-md-7">
-  <div style="margin-top:15px;height:262px;">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11"style="margin-top:15px;height:262px;padding:0!important;">
+        <%= link_to @article.url, :target => "_blank" do %>
+          <%= image_tag(@article.photo.url(:large), style:"width:100%;") %>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11" style="background-color:white;padding-bottom:10px;">
       <%= link_to @article.url, :target => "_blank" do %>
-        <%= image_tag(@article.photo.url(:large), style:"height:262px;") %>
-      <% end %>
-  </div>
-  <div class="col-md-12" style="height:184px;background-color:white;">
-    <%= link_to @article.url, :target => "_blank" do %>
-      <h1><%= @article.title %></h1>
-      <div style="text-align:center;">
-        <%= button_to "Continue Reading", @article.url, class:"btn btn-primary", form: {target: '_blank'} %>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-md-12" style="height:184px;background-color:white;margin-top:50px;">
-
-    <div style="padding-top:10px;">
-        <div class="col-md-1" style="float:left;">
-          <%= image_tag(current_user.profile_photo.url(:square), style:"height:40px;")%>
+        <h1><%= @article.title %></h1>
+        <div style="float:left;padding-right:5px;">by <%= @article.user.name %></div>
+        <div sty;e="clear:both;"><i class="fa fa-clock-o"></i> <%= time_ago_in_words @article.created_at %> ago</div>
+        <div style="text-align:center;">
+          <%= button_to "Continue Reading", @article.url, class:"btn btn-primary btn-success", form: {target: '_blank'},method: "get" %>
         </div>
-        <%= form_for(@comment) do |f| %>
-          <%= f.hidden_field :article_id, :value => @article.id %>
-          <div class="col-md-4 field" style="float:left;">
-            <%= f.text_field :comment %>
-          </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
       <% end %>
     </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-11" style="background-color:white;margin-top:30px;margin-bottom:30px;">
+      <div style="padding-top:10px;">
+          <div class="col-md-12">
+            <div style="float:left;">
+              <% if user_signed_in? %>
+                <%= image_tag(current_user.profile_photo.url(:square), style:"height:40px;")%>
+              <% else %>
+                <i class="fa fa-user fa-2x"%></i>
+              <% end %>
+            </div>
+            <div>
+              <%= form_for(@comment) do |f| %>
+                <%= f.hidden_field :article_id, :value => @article.id %>
+                <div class="col-md-4 field" style="float:left;">
+                  <%= f.text_field :comment %>
+                </div>
+                <div class="actions">
+                  <button type="submit" name="commit" class="btn btn-default btn-primary">Comment</button>
+                </div>
+              <% end %>
+            </div>
+            <hr>
+            <% if @article.comments.present? %>
+              <h3>Comments</h3>
+              <% @article.comments.map do |comment| %>
+                <div class="col-md-1">
+                  <div><%= image_tag(comment.user.profile_photo(:square),style:"height:30px;") %></div>
+                </div>
+                <div class="col-md-11">
+                  <div style="height:30px;">
+                    <div><%= comment.user.name %></div>
+                    <div><%= comment.user.company %></div>
+                    <div><%= time_ago_in_words comment.created_at %> ago</div>
+                  </div>
+                  <div style="padding-top:5px;"><%= comment.comment %></div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="col-md-3">
   <% @articles.map do |object| %>
     <%= render "shared/articles", object:object%>

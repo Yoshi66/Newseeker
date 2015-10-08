@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: [:timeline]
+
   def welcome
     @articles = Article.all
     @top_article = Article.all.first

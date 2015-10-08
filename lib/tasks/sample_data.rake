@@ -6,11 +6,11 @@ namespace :db do
                  password:"11112222",
                  password_confirmation:"11112222",
                  profile_photo:File.open("app/assets/images/DSCF3434.jpg"))
-    5.times do |n|
+    2.times do |n|
       name = "#{n}"
       email = "example-#{n+1}@railstutorial.jp"
       password  = "password"
-      url = "https://newspicks.com/news/118373#{n+1}?ref=index&block=top"
+      url = "https://www.washingtonpost.com/world/national-security/russias-syria-intervention-may-force-choice-on-obama-act-or-yield/2015/10/07/a88f9996-6d16-11e5-9bfe-e59f5e244f92_story.html"
       user = User.create(name:name,
                   email:email,
                   password:password,
