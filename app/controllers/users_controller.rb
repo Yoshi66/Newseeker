@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 
   def show
+    p "AAAAAAAAAAAAAAAA"
     @key = params[:key]
     p params
     p @user

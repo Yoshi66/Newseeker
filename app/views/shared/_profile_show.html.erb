@@ -32,7 +32,7 @@
     </div>
     <div class="col-md-8" style="height:55px;text-align:center;">
       <div class="col-md-1" style="text-align:center;margin:auto 0 auto 0;">
-        <%= link_to user_path(current_user,key:"current_user") do %>
+        <%= link_to user_path(@user,key:"current_user") do %>
           <div style="font-weight:700;margin:15px 3px 2px 3px;;">PICK</div>
             <% if @key == "current_user"%>
               <div style="border-bottom: 5px solid #f4bd6b;"></div>
@@ -40,9 +40,9 @@
           <% end %>
         </div>
       <div class="col-md-1">
-        <%= link_to user_path(current_user, key:"followed_users") do %>
+        <%= link_to user_path(@user, key:"followed_users") do %>
           <div style="font-weight:700;margin:7px 3px 2px 3px;">
-            <%= current_user.followed_users.count :style => 'color: #3366FF;'%>
+            <%= @user.followed_users.count :style => 'color: #3366FF;'%>
           </div>
           <div>following</div>
           <% if @key == "followed_users"%>
@@ -51,9 +51,9 @@
         <% end %>
       </div>
       <div class="col-md-1">
-        <%= link_to user_path(current_user, key:"followers") do %>
+        <%= link_to user_path(@user, key:"followers") do %>
           <div style="font-weight:700;margin:7px 3px 2px 3px;">
-            <%= current_user.followers.count :style => 'color: #3366FF;'%>
+            <%= @user.followers.count :style => 'color: #3366FF;'%>
           </div>
           <div>followed</div>
           <% if @key == "followers"%>

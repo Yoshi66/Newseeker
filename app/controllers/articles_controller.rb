@@ -38,17 +38,20 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     p "CCCCCCCCCCCCCCCCC"
-    redirect_to root_path if !params[:article][:url].starts_with?("http")
-    p "BBBBBBBBBBBBBBBBBBBBBBB"
-    @article = current_user.articles.build(article_params)
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to root_path, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+    if params[:article][:url].starts_with?("http")
+      p "BBBBBBBBBBBBBBBBBBBBBBB"
+      @article = current_user.articles.build(article_params)
+      respond_to do |format|
+        if @article.save
+          format.html { redirect_to root_path, notice: 'Article was successfully created.' }
+          format.json { render :show, status: :created, location: @article }
+        else
+          format.html { render :new }
+          format.json { render json: @article.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path
     end
   end
 
