@@ -24,7 +24,7 @@ gem 'faker', '~>  1.5.0'
 gem "font-awesome-rails"
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-
+gem 'passenger'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
