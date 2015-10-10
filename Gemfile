@@ -28,6 +28,7 @@ gem "font-awesome-rails"
 gem 'passenger'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
+
 gem 'nokogiri'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
