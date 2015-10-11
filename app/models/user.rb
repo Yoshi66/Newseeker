@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include ActiveModel::Validations
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :articles, dependent: :destroy

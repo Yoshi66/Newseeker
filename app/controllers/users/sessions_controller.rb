@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
+skip_before_filter :verify_authenticity_token, only: [:create]
 
   # GET /resource/sign_in
   def new
@@ -12,6 +13,26 @@ class Users::SessionsController < Devise::SessionsController
       puts 'DDDDDDDeeeeeeeeeeeeeeDDDDDDD'
       format.js
     end
+  end
+
+  def create
+    if request.xhr?
+      opts = auth_options
+      opts[:recall] = "#{controller_path}#xhr_failure"
+      self.resource = warden.authenticate!(opts)
+      sign_in(resource_name, resource)
+      xhr_success
+    else
+      super
+    end
+  end
+
+  def xhr_success
+    render json: { result: true }
+  end
+
+  def xhr_failure
+    render json: { result: false, errors: ["Login failed."] }
   end
 
   # POST /resource/sign_in
