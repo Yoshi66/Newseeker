@@ -26,6 +26,7 @@ gem 'omniauth-twitter'
 gem 'faker', '~>  1.5.0'
 gem "font-awesome-rails"
 gem 'passenger'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 

@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   get '/users/:id/followers',to:'users#followers'
   get '/users/:id',to:'users#show',as:'user'
   get '/timeline',to:'home#timeline',as:'timeline'
-  resources :articles
+  resources :articles do
+    collection {
+      get :search_result
+    }
+  end
   resources :comments,only: [:create, :destroy]
   resources :relationships,only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.

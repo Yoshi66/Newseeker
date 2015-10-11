@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new]
+  before_action :set_article_feed
 
   # GET /articles
   # GET /articles.json
@@ -84,10 +85,37 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search_result
+    puts params
+    if params[:search]
+      puts 'AAAAA'
+      @articles = Article.search(params[:search]).order("created_at DESC")
+      respond_to do |format|
+        format.js {render "alert('Hello Rails');"}
+        format.html
+        puts 'CCCCC'
+
+      end
+    else
+      puts 'BBBB'
+      @articles = Article.order("created_at DESC")
+    end
+  end
+
+  # def list_results
+  #   puts 'DDDDDDDDDDDDDDD'
+  #   puts params
+  #   @articles = @q.result(distinct: true)
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def set_article_feed
+      @article_feed = Article.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

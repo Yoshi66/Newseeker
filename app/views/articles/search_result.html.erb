@@ -1,0 +1,10 @@
+<%= render "shared/sidebar"%>
+<div class='col-md-10'>
+  <div class='row'>
+    <div class="col-md-4">
+      <% @articles.map do |object| %>
+        <%=  render 'shared/one_content', object:object%>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,13 @@ class Article < ActiveRecord::Base
           user_id: user.id)
   end
 
+  def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("title like ?", "%#{query}%")
+  end
+
+
+
     def get_image_from_link
       if url.starts_with?("http")
         page = MetaInspector.new(url)
@@ -38,6 +45,7 @@ class Article < ActiveRecord::Base
         self.title = page.best_title
         # p page.best_title
         self.title = page.title
+        self.host = page.host
         # p page.title
         p "AAAAAAAAAAAAAAAAAAAAAAAAAA"
         # puts page.head_links

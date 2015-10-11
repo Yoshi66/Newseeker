@@ -23,10 +23,17 @@
               <%= link_to "Title", root_path %>
           </div>
         </div>
+
         <!-- 3.リストの配置 -->
         <ul class="nav navbar-nav navbar-right">
+            <li style= "display:inline;padding-top:10px;">
+              <%= form_tag(search_result_articles_path, :method => "get", class: "form-horizontal",id: "search-form" ) do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Search Articles" %>
+                <%= submit_tag 'search', class:"btn btn-success", type:"submit" %>
+              <% end %>
+            </li>
             <% if user_signed_in? %>
-              <div class="dropdown btn-group">
+              <div class="dropdown btn-group" >
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
                   <% if current_user.profile_photo.url.include?("original/fa-user.png")%>
                     <i class="fa fa-user fa-2x" style="padding-right:5px;margin-top:5px;color:white;"></i>
@@ -41,15 +48,14 @@
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
                 </ul>
               </div>
-                <%= link_to new_article_path,{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#show_modal'} do %>
-                    <i class="fa fa-newspaper-o " style="color:white;"></i>
-                <% end %>
-              </li>
-              <% else %>
-              <li>
-                <%= link_to "SignUp/LogIn", new_user_registration_path, remote: true, 'data-toggle' => "modal",
-                'data-target'=> '#sign_up_modal'%>
-              </li>
+              <%= link_to new_article_path,{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#show_modal'} do %>
+                <i class="fa fa-newspaper-o " style="color:white;"></i>
+              <% end %>
+            <% else %>
+                <li>
+                  <%= link_to "SignUp/LogIn", new_user_registration_path, remote: true, 'data-toggle' => "modal",
+                  'data-target'=> '#sign_up_modal'%>
+                </li>
             <% end %>
         </ul>
     </div>
