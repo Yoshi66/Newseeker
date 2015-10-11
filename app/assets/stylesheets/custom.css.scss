@@ -28,6 +28,34 @@
 .btn-img:hover img {
     opacity: 0.4;
 }
+//////////////////////photo
+
+.btn-photo img {
+    display: block;
+}
+
+.btn-photo:hover .photo-wrap {
+    background-color: black;
+}
+
+.btn-photo:hover img {
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////グラデーション
 
 .bg-img {

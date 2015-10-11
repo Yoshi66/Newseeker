@@ -36,6 +36,11 @@ class Article < ActiveRecord::Base
         self.title = page.title
         p page.title
         p "AAAAAAAAAAAAAAAAAAAAAAAAAA"
+        puts page.head_links
+        puts page.meta_tags
+        p "BBBBBBBBBBBBBBBB"
+        puts page.meta_tags["property"]["og:site:name"]
+        puts page.meta_tags['property']['og:article:author']
         self.content = page.description
         self.photo = page.images.best
       end
