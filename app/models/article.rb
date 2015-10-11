@@ -8,15 +8,18 @@ class Article < ActiveRecord::Base
                         :medium => "400x190#",
                         :square => "650x320#",
                         :large => "800x380#",},
+                        :use_timestamp => false,
   :url  => "/assets/arts/:id/:style/:basename.:extension", # 画像保存先のURL先
   :path => "#{Rails.root}/public/assets/arts/:id/:style/:basename.:extension" # サーバ上の画像保存先パス
-  validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] },
+        presence: true,  # ファイルの存在チェック
+       less_than: 5.megabytes
+  # do_not_validate_attachment_file_type :photo
   # ## Validation
-  validates_attachment :photo,
-       presence: true,  # ファイルの存在チェック
-       less_than: 5.megabytes # ファイルサイズのチェック
+        # ファイルサイズのチェック
   validates :url, presence: true
   before_validation :get_image_from_link
+  validates_attachment_file_name :photo, :matches => [/png\Z/, /jpe?g\Z/]
 
 
 
@@ -31,18 +34,18 @@ class Article < ActiveRecord::Base
       if url.starts_with?("http")
         page = MetaInspector.new(url)
         return unless page.images.best.present?
+        p page.images.best
         self.title = page.best_title
-        p page.best_title
+        # p page.best_title
         self.title = page.title
-        p page.title
+        # p page.title
         p "AAAAAAAAAAAAAAAAAAAAAAAAAA"
-        puts page.head_links
-        puts page.meta_tags
+        # puts page.head_links
+        # puts page.meta_tags
         p "BBBBBBBBBBBBBBBB"
-        puts page.meta_tags["property"]["og:site:name"]
-        puts page.meta_tags['property']['og:article:author']
         self.content = page.description
-        self.photo = page.images.best
+        self.photo = URI.parse(page.images.best)
+        # self.asset = URI.parse("http://s3.amazonaws.com/blah/blah/blah.jpg")
       end
     end
 end
