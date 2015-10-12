@@ -26,12 +26,6 @@
 
         <!-- 3.リストの配置 -->
         <ul class="nav navbar-nav navbar-right">
-            <li style= "display:inline;padding-top:10px;">
-              <%= form_tag(search_result_articles_path, :method => "get", class: "form-horizontal",id: "search-form" ) do %>
-                <%= text_field_tag :search, params[:search], placeholder: "Search Articles" %>
-                <%= submit_tag 'search', class:"btn btn-success", type:"submit" %>
-              <% end %>
-            </li>
             <% if user_signed_in? %>
               <div class="dropdown btn-group" >
                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" >
@@ -51,7 +45,19 @@
               <%= link_to new_article_path,{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#show_modal'} do %>
                 <i class="fa fa-newspaper-o " style="color:white;"></i>
               <% end %>
+              <li style= "display:inline;padding-top:10px;">
+                <%= form_tag(search_result_articles_path, :method => "get",id: "search-form" ) do %>
+                  <%= text_field_tag :search, params[:search], placeholder: "Search Articles" %>
+                  <%= submit_tag 'search', class:"btn btn-success", type:"submit" %>
+                <% end %>
+              </li>
             <% else %>
+              <li style= "display:inline;padding-top:10px;">
+                  <%= form_tag(search_result_articles_path, :method => "get", class: "form-horizontal",id: "search-form" ) do %>
+                    <%= text_field_tag :search, params[:search], placeholder: "Search Articles" %>
+                    <%= submit_tag 'search', class:"btn btn-success", type:"submit" %>
+                  <% end %>
+              </li>
                 <li>
                   <%= link_to "SignUp/LogIn", new_user_registration_path, remote: true, 'data-toggle' => "modal",
                   'data-target'=> '#sign_up_modal'%>

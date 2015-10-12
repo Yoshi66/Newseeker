@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admin_users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'home#welcome'
   devise_for :users, :controllers => {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
+
 
   devise_scope :user do
     post '/users/registrations/detail_info',to:'users/registrations#detail_info'

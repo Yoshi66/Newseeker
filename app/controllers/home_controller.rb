@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     @third_article = Article.all.find_by(id: 3)
     @one_articles = Article.all
     if signed_in?
-      @article_feed = current_user.feed
+
       @article_feed = Article.all.order('articles.created_at DESC')
     else
       @article_feed = Article.all.order('articles.created_at DESC')
